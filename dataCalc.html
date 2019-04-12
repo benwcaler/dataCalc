@@ -15,35 +15,31 @@
   <body>
     <div>
       <label for="feet">Feet - </label>
-      <input
-        class="feet"
-        type="number"
-        id="feet"
-        autofocus="autofocus"
-        placeholder="eg. 5"
-      />
+      <input type="text" id="feet" autofocus="autofocus" placeholder="eg. 5" />
     </div>
     <div>
       <label for="inches">Inches - </label>
-      <input class="inches" type="number" id="inches" placeholder="eg. 10" />
+      <input type="text" id="inches" placeholder="eg. 10" />
     </div>
     <br />
     <div>
       <label for="pounds">Pounds - </label>
-      <input class="pounds" type="number" id="pounds" placeholder="eg. 165.3" />
+      <input type="text" id="pounds" placeholder="eg. 165.3" />
     </div>
     <br />
-    <div id="height">Height = <span id="heightTotal">...</span></div>
-    <div id="weight">Weight = <span id="weightTotal">...</span></div>
+    <div>Height = <span id="heightTotal">...</span> cm</div>
+    <div>Weight = <span id="weightTotal">...</span> kg</div>
     <script>
-      const feet = document.getElementById("feet");
-      const inches = document.getElementById("inches");
-      const pounds = document.getElementById("pounds");
-      const hTotal = document.getElementById("heightTotal");
-      const wTotal = document.getElementById("weightTotal");
+      const { feet, inches, pounds, hTotal, wTotal } = {
+        feet: document.getElementById("feet"),
+        inches: document.getElementById("inches"),
+        pounds: document.getElementById("pounds"),
+        hTotal: document.getElementById("heightTotal"),
+        wTotal: document.getElementById("weightTotal")
+      };
 
       window.addEventListener("keydown", e => {
-        let active = document.activeElement.id;
+        const active = document.activeElement.id;
         if (e.keyCode === 13) {
           switch (active) {
             case "feet":
@@ -68,10 +64,10 @@
       });
 
       function calc() {
-        let height = (feet.value * 12 + parseInt(inches.value)) * 2.54;
-        let weight = pounds.value * 0.45359237;
-        hTotal.innerHTML = height.toFixed(1) + " cm";
-        wTotal.innerHTML = weight.toFixed(1) + " kg";
+        const height = (feet.value * 12 + parseInt(inches.value)) * 2.54;
+        const weight = pounds.value * 0.45359237;
+        hTotal.innerHTML = height.toFixed(1);
+        wTotal.innerHTML = weight.toFixed(1);
       }
 
       function clear() {
